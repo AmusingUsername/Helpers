@@ -29,11 +29,37 @@ namespace Helper
         /// </summary>
         /// <param name="CSV">CSV string</param>
         /// <returns>CSV items in string array</returns>
-        public static string[] csvToStringArray(string CSV)
+        public static string[] csvToStringArray(this string CSV)
         {
             string[] retVal = CSV.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             for(int i = 0; i < retVal.Length; i++) { retVal[i] = retVal[i].Trim(); }
             return retVal;
         }
+
+        /// <summary>
+        /// Outputs a delimited string list of values contained in string array
+        /// </summary>
+        /// <param name="csvItems">Items to be contained in delimited list</param>
+        /// <param name="separator">Delimiter for list</param>
+        /// <returns>delimited string list</returns>
+        public static string stringArrayToCSV(this string[] csvItems, string separator = ", ")
+        {
+            StringBuilder retVal = null;
+            if (csvItems != null)
+            {
+                retVal = new StringBuilder();
+                if(csvItems.Length > 0)
+                {
+                    foreach(string csvItem in csvItems)
+                    {
+                        retVal.Append(csvItem + separator);
+                    }
+                    //cheaper than checking whether to add the seperator each time
+                    retVal = retVal.Remove(retVal.Length - separator.Length, separator.Length);
+                }
+            }
+            return (retVal == null ? null : retVal.ToString());
+        }
+
     }
 }
