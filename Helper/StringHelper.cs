@@ -61,5 +61,16 @@ namespace Helper
             return (retVal == null ? null : retVal.ToString());
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public static string prettifyJson(string json)
+        {
+            throw new NotImplementedException();
+            return string.Empty;
+        }
     }
 }
